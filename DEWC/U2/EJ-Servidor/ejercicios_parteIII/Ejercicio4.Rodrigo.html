@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <button onclick="pulsame();">Pulsame</button>
+</body>
+<script>
+    /*
+     Crea una web con un botón que al presionarlo, redimensione la ventana a un tamaño de 600 x 500.
+    */
+    var ventana;
+    window.onload = () => {
+        ventana = crearVentana(screen.width/2,screen.height/2);
+    }
+    const crearVentana = (x,y) => {
+        let opciones = "toolbar=0, location=0, directories=0, status=0,";
+        opciones += "menubar=0, scrollbars=0, resizable=0, copyhistory=0,width=100,height=100,";
+        opciones += `left=${x},top=${y}`;
+        return window.open("","Nueva ventana", opciones);
+    }
+    pulsame = () => {
+        console.log(ventana!=undefined);
+        if(ventana!=undefined){
+            ventana.window.resizeTo(600,500);
+            ventana.window.focus();
+        }
+        window.resizeTo(600,500);
+    }
+</script>
+</html>

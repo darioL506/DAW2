@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio3</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    Desarrolla un script en el que, según el tamaño de la ventana en la que se visualiza nuestra
+    web, abra una nueva posicionada a (ancho de resolución actual)/8 y (alto de resolución
+    actual)/6, de la esquina superior derecha de la ventana.
+    */
+    window.onload = () => {
+        const x = screen.width/8;
+        const y = screen.height/6;
+        crearVentana(x,y);
+    }
+    const crearVentana = (x,y) => {
+        let opciones = "toolbar=0, location=0, directories=0, status=0,";
+        opciones += "menubar=0, scrollbars=0, resizable=0, copyhistory=0,width=100,height=100,";
+        opciones += `left=${x},top=${y}`;
+        window.open("","Nueva ventana", opciones);
+
+    }
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 2</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    Desarrolla un script que muestre: la altura total y disponible y la anchura total y disponible
+    de nuestra pantalla. También debe mostrar el número de colores y la resolución actual.
+    Prueba el script en varios navegadores y cambia la resolución para comprobar que funciona.
+    */
+    window.onload = () => {
+        var colores = Math.pow(8,screen.colorDepth);
+        console.log(screen.colorDepth,colores);
+        console.log(`
+    Altura:
+        Total:      ${screen.height}
+        Disponible: ${screen.availHeight}
+    Anchura:
+        Total:      ${screen.width}
+        Disponible: ${screen.availWidth}
+    Numero de colores:  ${colores}
+    Resolución:         ${screen.pixelDepth}`);
+    }
+  </script>
+</html>

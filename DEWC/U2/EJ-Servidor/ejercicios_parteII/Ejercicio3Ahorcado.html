@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="texto"></p>
+    <script>
+        //-----------------VARIABLES-------------------
+        var nIntentos = 0, maxIntentos;
+        var palabraSecreta = "", mensaje = "", textoPanel = "", introd = "";
+        var haPerdido = false;
+        var controlAciertos;
+        var letrasUsadas = ["0"];
+        var listaPalabrasAleatorias = ["ordenador","impresora","escuela","informatica","vaca","ternera","confusion","mascarilla","circular","templo","monitor","instituto","trabajo","impuesto","retrato","almendra","botella"];
+
+        //-----------------FUNCIONES-------------------
+        //Imprime en pantalla el texto pasado como valor
+        function actualizarTexto(texto) {
+            document.getElementById("texto").innerHTML = texto;
+        }
+
+        //Escribe las letras ya acertadas en el panel
+        function actualizarPanel() {
+            textoPanel = "";
+            for (let index = 0; index < palabraSecreta.length; index++) {
+                if (controlAciertos[index]) {
+                    textoPanel = textoPanel + " " + palabraSecreta.charAt(index);
+                } else {
+                    textoPanel = textoPanel + " _";
+                }
+            }
+        }
+
+        //Devuelve true si la letra pasada como valor ya ha sido utilizada
+        function letraRepetida(letra) {
+            var repetida = false;
+
+            for (let index = 0; index < letrasUsadas.length; index++) {
+                if (letra == letrasUsadas[index]) {
+                    repetida = true;
+                }
+                index++;
+            }
+            return repetida;
+        }
+
+        /* Comprueba si existe la letra introducida en la palabra secreta. Actualiza el vector "controlAciertos" y
+        devuelve true si hubo alguna ocurrencia */
+        function comprobarLetra(letra) {
+            let resul = false;
+            for (let index = 0; index < palabraSecreta.length; index++) {
+                if (letra == palabraSecreta.charAt(index)) {
+                    resul = true;
+                    controlAciertos[index] = true;
+                }
+            }
+            return resul;
+        }
+
+        //Devuelve true si la palabra se ha completado
+        function haGanado() {
+            let victoria = true;
+            let index = 0;
+
+            //for (let index = 0; index < controlAciertos.length; index++) {
+            while (index < controlAciertos.length && victoria)
+            {
+                if (!controlAciertos[index]) {
+                    victoria = false;
+                }
+                index++;
+            }
+            return victoria;
+        }
+
+        //Elimina los botones "siguiente turno" e "intentar solución"
+        function finalizar() {
+            var boton1 = document.getElementById("boton1");
+            var boton2 = document.getElementById("boton2");
+            boton1.parentNode.removeChild(boton1);
+            boton2.parentNode.removeChild(boton2);
+        }
+
+        /*Se ha pulsado el botón "decir letra": Pide una letra, comprueba si está y si ha perdido o ganado
+        y escribe los mensajes correspondientes*/
+        function turno() {
+            var mensajeError = "";
+            var vaBien = false;
+
+            //El usuario elige una letra
+            while (!vaBien){
+                vaBien = true;
+                introd = prompt(mensajeError + "Escribe una letra");
+                introd = introd.toLowerCase();
+                //Comprueba que solo ha introducido una letra
+                if (introd.length > 1) {
+                    mensajeError = "¡Demasiadas letras! ";
+                    vaBien = false;
+                }
+
+                //Comprueba que no se haya repetido una letra
+                if (letraRepetida(introd)) {
+                    mensajeError = "¡Esa letra ya la has usado! ";
+                    vaBien = false;
+                }
+            }
+            letrasUsadas.push(introd);
+
+            //Comprueba si se ha acertado y actualiza el panel
+            if (!comprobarLetra(introd)) {
+                nIntentos++;
+                mensaje = "La letra no estaba en la palabra. Te queda(n) " + (maxIntentos - nIntentos) + " turno(s).";
+            } else {
+                mensaje = "Has acertado una letra. Te queda(n) " + (maxIntentos - nIntentos) + " turno(s).";
+            }
+            actualizarPanel();
+
+            mensaje = mensaje + "<br>" + textoPanel;
+            actualizarTexto(mensaje);
+
+            //Comprueba victoria/derrota
+            if (haGanado()) {
+                mensaje = "¡HAS GANADO!";
+                mensaje = mensaje + "<br>" + textoPanel;
+                actualizarTexto(mensaje);
+                finalizar();
+            } else if (nIntentos == maxIntentos) {
+                mensaje = "¡Has perdido! Te has quedado sin intentos. La palabra secreta era '" + palabraSecreta + "'.";
+                actualizarTexto(mensaje);
+                finalizar();
+            }
+        }
+
+        //Se ha pulsado el botón "intentar solución": Pide una palabra y comprueba si ha acertado. Se muestran los mensajes corresp.
+        function intentarSolucion() {
+            introd = prompt("Escribe la palabra");
+            introd = introd.toLowerCase();
+            if (palabraSecreta == introd) {
+                mensaje = "¡HAS ACERTADO! La palabra secreta era '" + palabraSecreta + "'.";
+                actualizarTexto(mensaje);
+                finalizar();
+            } else {
+                nIntentos++;
+                if (nIntentos == maxIntentos) {
+                    mensaje = "¡Has perdido! Te has quedado sin intentos. La palabra secreta era '" + palabraSecreta + "'.";
+                    actualizarTexto(mensaje);
+                    finalizar();
+                } else {
+                    mensaje = "¡Fallaste! La palabra NO es '" + introd + "'. Te queda(n) " + (maxIntentos - nIntentos) + " turno(s).";
+                    mensaje = mensaje + "<br>" + textoPanel;
+                    actualizarTexto(mensaje);
+                }
+            }
+        }
+
+        //------------------CUERPO (INICIALIZACIÓN) ------------------
+        //Pide la palabra secreta y la convierte a minúsculas
+        palabraSecreta = prompt("Escribe la palabra secreta, o '-1' para usar una palabra aleatoria");
+        if (palabraSecreta == "-1") {
+            let alea = parseInt((Math.random() * listaPalabrasAleatorias.length));
+            palabraSecreta = listaPalabrasAleatorias[alea];
+        } else {
+            palabraSecreta = palabraSecreta.toLowerCase();
+        }        
+        maxIntentos = palabraSecreta.length;
+
+        //Inicializa "controlAciertos" como un vector de falsos con la misma longitud que "palabraSecreta"
+        controlAciertos = [false];
+        for (let index = 1; index < palabraSecreta.length; index++) {
+            controlAciertos.push(false);            
+        }
+
+        //Actualiza el panel y muestra el primer mensaje
+        actualizarPanel();
+        mensaje = "La palabra secreta tiene " + maxIntentos + " letras, por lo que tienes " + maxIntentos + " intentos. Click en el botón para empezar";
+        mensaje = mensaje + "<br>" + textoPanel;
+        actualizarTexto(mensaje);
+        
+    </script>
+    <br>
+    <button onclick="turno()" id="boton1">Decir letra</button>
+    <button onclick="intentarSolucion()" id="boton2">Intentar solución</button>
+</body>
+</html>

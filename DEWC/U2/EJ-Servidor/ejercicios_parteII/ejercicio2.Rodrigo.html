@@ -1,0 +1,143 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            color: #434343;
+        }
+
+        table {
+            border: 1px solid steelblue;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            padding: 5px 10px;
+        }
+
+        th {
+            background: steelblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    Desarrolla una aplicación que permita calcular los salarios mensuales de
+los trabajadores de una empresa a partir de los siguientes datos:
+a. Número de horas trabajadas.
+b. Turno realizado: Mañanas (m), Tardes (t) o Noches (n).
+Para el cálculo del salario bruto se tendrá en cuenta que el turno de
+mañana se paga a 15€/hora, el de tarde se paga a 17 €/hora y el turno
+de noche se paga 20 €/hora.
+Para el cálculo del salario neto se realizan determinados descuentos
+destinados al pago de impuestos de la siguiente forma:
+- Si el salario bruto es menor de 600 € el descuento es del 8%.
+- Si el salario bruto está entre 600 € y 1000 € el descuento es
+del 10%.
+- Si el salario bruto es mayor de 10000 € el descuento es del
+12%.
+Se desea calcular el salario neto de cada trabajador. Para ello la
+aplicación irá pidiendo
+uno a uno los trabajadores hasta que el usuario indique lo contrario.
+Para cada trabajador se mostrará su salario neto.
+Antes de finalizar la aplicación mostrará el importe total de salarios
+abonados.
+El script se escribirá usando tantas funciones como sea posible con el fin
+de poder
+reutilizar la máxima cantidad de código en un futuro.*/
+window.onload = () => {
+    var trabajadores = [];
+    do{
+        var trabajador = nuevoTrabajador();
+        if(trabajador!=null){
+            mostrarDatosTrabajador(trabajador);
+            trabajadores.push(trabajador);
+        }
+    } while(trabajador!=null)
+    var totalSalarios = getTotalSalarios(trabajadores);
+    document.writeln(`Total de salarios: ${totalSalarios}`);
+}
+const nuevoTrabajador = () => {
+    const nombre = prompt("Introduce un nombre");
+    if(nombre!=""){
+        var trabajador = {
+            nombre:nombre.trim(),
+            horas:undefined,
+            turno:undefined,
+            salarioBruto:0,
+            salarioNeto:0,
+        }
+        do{
+            trabajador.horas = parseInt(prompt("Introduce las horas"));
+            console.log(trabajador.horas);
+        }while(Number.isNaN(trabajador.horas))
+        do {
+            trabajador.turno = prompt("Introduce el turno. Mañanas:m\nTardes t\nNoches\t").toLowerCase();
+            
+        } while (trabajador.turno!="m" && trabajador.turno!="t" && trabajador.turno!="n");
+        calcularSalarioBruto(trabajador);
+        calcularSalarioNeto(trabajador);
+        return trabajador;
+    }
+    return null;
+}
+/**
+Para el cálculo del salario bruto se tendrá en cuenta que el turno de
+mañana se paga a 15€/hora, el de tarde se paga a 17 €/hora y el turno
+de noche se paga 20 €/hora.
+*/
+const calcularSalarioBruto = trabajador => {
+    switch(trabajador.turno) {
+        case "m":
+            trabajador.salarioBruto = trabajador.horas * 15;
+            break;
+        case "t":
+            trabajador.salarioBruto = trabajador.horas * 17;
+            break;
+        case "n":
+            trabajador.salarioBruto = trabajador.horas * 20;
+            break;
+    }
+}
+/*
+Para el cálculo del salario neto se realizan determinados descuentos
+destinados al pago de impuestos de la siguiente forma:
+- Si el salario bruto es menor de 600 € el descuento es del 8%.
+- Si el salario bruto está entre 600 € y 1000 € el descuento es
+del 10%.
+- Si el salario bruto es mayor de 10000 € el descuento es del
+12%.
+*/
+const calcularSalarioNeto = trabajador => {
+    if(trabajador.salarioBruto<=600){
+        trabajador.salarioNeto = trabajador.salarioBruto*0.92;
+    } else if(trabajador.salarioBruto>600 && trabajador.salarioBruto<=1000){
+        trabajador.salarioNeto = trabajador.salarioBruto*0.90;
+    } else if(trabajador.salarioBruto>10000){
+        trabajador.salarioNeto = trabajador.salarioBruto*0.88;
+    }
+}
+/**
+    Muestra los datos del trabajador
+*/
+const mostrarDatosTrabajador = trabajador =>{
+    document.write(`${trabajador.nombre}<br>Salario Bruto: ${trabajador.salarioBruto}<br>Salario Neto: ${trabajador.salarioNeto}<hr/>`)
+}
+/**
+    Calcula la suma de todos los salarios de los trabajadores
+*/
+const getTotalSalarios = trabajadores => {
+    var totalSalarios = 0;
+    trabajadores.forEach(trabajador => totalSalarios+=trabajador.salarioBruto)
+    return totalSalarios;
+}
+</script>
+</html>
