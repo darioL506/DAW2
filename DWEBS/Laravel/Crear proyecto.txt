@@ -1,0 +1,27 @@
+Crear proyecto
+Desde C://xampp/htdocs/"carpeta proyectos"
+composer create-project laravel/laravel ejemplo "6.*"
+
+Ruta
+http://localhost/Laravel/ejemplo/public
+
+Crear controlador:
+Desde la carpeta del proyecto
+php artisan make:controller ejemplo
+
+Crear modelo	
+Desde la carpeta del proyecto	
+php artisan make:model ejemplo
+
+Migración
+php artisan migrate
+php artisan db:seed
+
+Git
+Recuerda que para que funcionen, una vez realizado el pull deberás realizar un
+composer update (dentro de la carpeta del proyecto).
+Tendremos que regenerar la key el proyecto con:
+
+cp .env.example .env
+
+php artisan key:generate
