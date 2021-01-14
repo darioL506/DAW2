@@ -1,0 +1,41 @@
+services:
+  reverseproxy:
+    build: ./
+    ports:
+      - 8080:8080
+      - 8081:8081
+      - 8082:8082
+    restart: always  
+
+  apache:
+    depends_on:
+      - reverseproxy
+    build: ./apache
+    restart: always
+
+  tomcat:
+    depends_on:
+      - reverseproxy
+    build: ./tomcat
+    restart: always
+  
+  mariadb:
+    image: mariadb:10.5.8    
+    volumes:
+      - C:\xampp:/var/lib/mysql
+    environment:
+      TZ: 'Europe/Rome'
+      # MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      # MYSQL_ROOT_PASSWORD: 'Chubaca2020'
+      # MYSQL_USER: 'mamas'
+      # MYSQL_PASSWORD: 'Chubaca2020'
+      # MYSQL_DATABASE: 'Mamas'
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin        
+    links:
+      - 'mariadb:db'
+    depends_on: 
+      - mariadb
+      - reverseproxy

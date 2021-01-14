@@ -1,0 +1,33 @@
+version:  '3'
+services:
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb-DB
+    volumes:
+      - ./shared/sql:/var/lib/mysql
+    environment:
+      TZ: 'Europe/Rome'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      MYSQL_ROOT_PASSWORD: 'Chubaca2020'
+      MYSQL_USER: 'dario'
+      MYSQL_PASSWORD: 'Chubaca2020'
+      MYSQL_DATABASE: 'ejemplo'
+    networks: 
+      - ejemplo-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - 'mariadb:db'
+    depends_on: 
+      - mariadb
+    ports:
+      - 8081:80
+    networks:
+      - ejemplo-network
+  
+networks:
+  ejemplo-network:
+    driver: bridge
