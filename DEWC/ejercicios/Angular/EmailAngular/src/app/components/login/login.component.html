@@ -1,0 +1,17 @@
+<div *ngIf="user==null">
+    <button (click)="authenticate()">Authenticate</button>
+</div>
+<div *ngIf="user!=null">
+    <p *ngIf="error!=null">
+        <br>
+        Error: {{error|json}}
+        <br>
+        
+    </p>
+    Is gapi loaded and ready? {{gapiSetup}}
+    <br>
+    <strong>User:</strong> {{user?.getBasicProfile().getEmail() | json}}
+</div>
+
+
+
