@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Clases row y col */
+.topHeader {
+    display: grid;
+    align-items: center;       
+}
+
+header {
+    padding: 3vh 1vh;
+}
+
+main{
+    padding: 3vh 1vh;
+}
+
+footer {
+    display: grid;
+    grid-template: 'auto auto auto';
+    justify-content: space-around;
+    align-items: center;
+    padding: 3vh 1vh;
+}
+
+.logo{grid-column: 1/10;}
+.busqueda{grid-column: 10/12;}
+.carrito{grid-column: 12;}
+
+.headerNav {
+    display: inline-grid;
+    align-items: center;
+    grid-template: 'auto auto auto auto auto auto auto auto auto auto auto auto';
+    grid-gap: 5vh;
+    padding: 3vh 0;
+}
+
+.imgList {
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+    grid-template:'img img';
+    
+}
+
+.imgList > a > img {
+    max-width: 500px;
+}
+
+.imgList2 {
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+    grid-template:'img img img img';
+}
+
+.imgList2 > a > img {
+    max-width: 500px;
+}
+
+.mainBusqueda {
+    display: grid;
+    grid-template: 'menuB imgListLow';
+}
+
+.imgListLow {
+    display: grid;
+    grid-template: 'auto auto auto auto auto';
+}
+
+.producto {
+    display: grid;
+}
+
+.descProd {
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+    grid-template-areas: 'auto';
+}
+
+/* Diseño para botones fontawesome */
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    transition: 1s;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.imgListLow > div > a > img {
+    max-width: 200px;    
+}
+
+/* Responsive */
+@media only screen and (min-width: 600px) 
+{
+    ul li {text-align: center;}    
+    .hiddenMov {display: block;}
+    .hidden {display: none}
+    .imgListHigh > a img {
+        max-width: 200px;
+    }
+    
+    .imgListLow {
+        grid-template: 'auto auto';
+        justify-content: space-between;
+    }
+    
+    .producto {
+        grid-template: 'hugeImg' 'descProd';
+        align-items: center;
+        text-align: center;
+    }
+
+    .hugeImg > img {max-height: 450px;}
+}
+
+@media only screen and (min-width: 768px) 
+{
+    .hiddenMov {display: none;}
+    .hidden {display: block}
+    ul li {text-align: left;}     
+    .imgListHigh > a img {
+        max-width: 500px;
+    } 
+    .imgListLow {
+        grid-template: 'auto auto auto auto auto';
+    }  
+    
+    .producto {
+        grid-template: 'hugeImg descProd';
+    }
+    .hugeImg > img {max-height: 800px;}
+}

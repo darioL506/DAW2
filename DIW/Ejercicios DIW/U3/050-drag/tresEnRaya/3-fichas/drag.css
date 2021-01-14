@@ -1,0 +1,68 @@
+/*--- TABLERO 
+ */
+.tablero{
+    background-color: grey;
+    padding: 1em;
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0.5em; 
+}
+
+.tablero div{
+	border: 0.2em solid black;
+	width: 10em;
+	height: 10em;
+}
+
+/*---  RETICULA
+*/
+.cabecera {
+  grid-area: cabecera;
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+}
+
+.areaJuego {
+  grid-area: areaJuego;
+  background: blue;
+  text-align: center;
+}
+
+.arrastrables {
+  grid-area: arrastrables;
+  background: red;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+  'cabecera cabecera cabecera' 
+  'areaJuego areaJuego arrastrables' 
+} 
+
+/*--- FICHAS */
+#circulo-1, 
+#circulo-2, 
+#circulo-3 {
+	border-radius: 100%;
+	border: 0.2em solid black;
+	width: 5em;
+	height: 5em;
+}
+
+#cuadrado-1, 
+#cuadrado-2, 
+#cuadrado-3 {
+	border-radius: 5%;
+	border: 0.2em solid black;
+	width: 5em;
+	height: 5em;
+}
+
+
+
+
+
+
