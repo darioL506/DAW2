@@ -1,0 +1,14 @@
+CONCESIONARIO
+
+Historias de usuario:
+-Persona que quiere un coche nuevo
+	|->Persona que quiere cambiar a un modelo de coche último modelo sin importar el dinero
+	|->Persona que quiere un coche nuevo para la familia
+	|->Persona que quiere un coche para el solo
+	|->Padres acaudalados que miman a su hijo sin importar el dinero
+
+-Persona que busca un coche de segunda mano
+	|->Persona que quiere un coche pero no puede permitirse uno nuevo
+	|->Estudiante que quiere un coche barato porque lo necesita
+	|->Padre que quiere uno nuevo pero está pensando en si puede ahorrar
+	|->Padres que le quieren comprar un coche a su hijo/a sin gastarse demasiado

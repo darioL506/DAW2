@@ -1,0 +1,19 @@
+a {
+    background-color: blue;
+    display: inline-block;
+    width: 55px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: auto 15px;
+    height: 25px;
+    box-shadow: 5px 5px 5px gray;
+    position: relative;
+}
+
+a:active {
+    background-color: red;
+    top: 5px;
+    box-shadow: 5px 0px 5px gray;
+    
+}

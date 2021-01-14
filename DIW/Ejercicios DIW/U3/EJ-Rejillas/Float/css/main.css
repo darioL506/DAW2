@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Clases row y col */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.float-right {
+    float: right;
+}
+
+[class*="col-"] 
+{
+    float: left;
+    padding: 10px;
+}
+
+[class*="col-"] 
+{
+    width: 100%;
+}
+
+.imgListLow > div a img {
+    max-width: 200px;
+}
+
+/* Diseño para botones fontawesome */
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    transition: 1s;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+/* Responsive */
+@media only screen and (min-width: 600px) 
+{
+    ul li {text-align: center;}
+    
+    .hiddenMov {display: block;}
+    .hidden {display: none}
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) 
+{
+    .hiddenMov {display: none;}
+    .hidden {display: block}
+    ul li {text-align: left;}    
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}

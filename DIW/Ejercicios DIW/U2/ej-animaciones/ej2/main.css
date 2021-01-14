@@ -1,0 +1,14 @@
+.main {
+    background: gray;
+    overflow: hidden;
+    width: 6%;
+    transition: 2s;
+}
+
+.main:hover {
+    width: 54%;
+}
+
+img {
+    padding: 20px;
+}
