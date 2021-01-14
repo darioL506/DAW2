@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    Desarrolla un script que aporte información del navegador sobre el que se ejecuta. Obtén el
+    nombre del navegador, su versión, si tiene habilitada la ejecución de cookies, sistema sobre
+    el que se ejecuta y si tiene o no habilitada la ejecución de applets Java.
+    */
+    window.onload = () => {
+      console.log(
+          `Nombre del navegador: ${navigator.appCodeName}\n`
+          +`Version:${navigator.appVersion}\n`
+          +`Cookies habilitadas:${navigator.cookieEnabled}\n`
+          +`SO:${navigator.platform}\n`
+          +`Applets Java:${navigator.javaEnabled()}\n`);
+    };
+  </script>
+</html>

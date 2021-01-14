@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pum</title>
+    <script>
+        function pum() {
+            var cont = 1;
+            var resultado =  "";
+            while (cont <= 100) {
+                if (cont % 7 == 0) {
+                    resultado += (" PUM " + "</br>");
+                                       
+                    console.log("PUM" + "</br>");
+                } else {
+                    var cad = new String(cont.toString());
+                    if (cad.substr(cad.length - 1, cad.length) == "7") {
+                        resultado += (" PUM " + "</br>");
+                                          
+                        //console.log("PUM" + "\n");
+
+                    } else {
+                        resultado += " " + (cont) + " ";                       
+                        //console.log(cont);
+                    };
+                }
+                cont++;
+            }
+            console.log(resultado);
+            return resultado;
+        }
+
+    </script>
+</head>
+
+<body>
+    <script>
+        document.write(pum());
+    </script>
+    
+</body>
+
+</html>

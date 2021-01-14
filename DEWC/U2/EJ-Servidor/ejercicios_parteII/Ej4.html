@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+
+<script>
+
+    String.prototype.separar = function(car){
+        var res = "";
+        for (let index = 0; index < this.length; index++) {
+            res = res + this.charAt(index);
+            res = res + car;
+            console.log(index);
+        }
+        res = res.substring(0,res.length-1);
+        console.log(res);
+        return res;
+    };
+
+</script>
+
+<body>
+    <h1>Funcionamiento de prototype</h1>
+
+    <script>
+        var cad = "";
+        var car = "";
+        cad = prompt("Que cadena deseas introducir?");
+        car = prompt("Con que deseas separarla?");
+        
+        document.write(cad.separar(car));
+    </script>
+
+</body>
+</html>

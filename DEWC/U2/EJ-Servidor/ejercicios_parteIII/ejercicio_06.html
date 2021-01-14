@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6 - BOM</title>
+</head>
+
+<body>
+    <h1>Ejercicio 6 - BOM</h1>
+    <p>
+        Desarrolla un script que al presionar un botón, cargue de nuevo el documento actual y con
+        otro botón cargue un documento nuevo (p.ej. una imagen o documento pdf).
+    </p>
+    <button onclick="reload_url();">Método location.reload</button>
+    <button onclick="replace_url();">Método location.replace</button>
+
+    <script>
+        function reload_url() {
+            document.location.reload();
+        }
+
+        function replace_url() {
+            document.location.replace('https://s.libertaddigital.com/fotos/noticias/954/0/rugby-seven.jpg');
+        }
+    </script>
+
+</body>
+
+</html>
