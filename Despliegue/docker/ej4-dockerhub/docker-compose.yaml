@@ -1,0 +1,9 @@
+version:  '3'
+services:
+  prueba2:
+    image: darileon/apache-php:v1
+    container_name: prueba2
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - 8082:80

@@ -1,0 +1,35 @@
+h1 {
+	font-family: monospace;
+	font-size: 18pt;
+	font-weight: bold;
+	color: green;
+}
+
+BODY {
+	background: black;
+	font-size: 12pt;
+	font-family: monospace;
+	color: green;	 	
+}
+
+BUTTON {
+	background-color: black;
+	border-color: green;
+	outline-color: green;
+	font-family: monospace;
+}
+
+INPUT {
+	background-color: black;
+	border-color: green;
+	outline-color: green;
+	font-family: monospace;
+	color: green;
+}
+
+TABLE {
+	border-width: 5px;
+	border-spacing: 0px;
+	border-color: green;
+	background-color: black;
+}

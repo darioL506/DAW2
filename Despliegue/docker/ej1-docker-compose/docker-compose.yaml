@@ -1,0 +1,36 @@
+version:  '3'
+services:
+  #Nombre servicio (Alias para docker-compose)
+  db:
+    #Imagen
+    image: mariadb:10.5
+    #Nombre del contenedor (para poder manejarlo con docker)
+    container_name: mariadb
+    #Mapeado a un volumen
+    volumes:
+      - data:/var/lib/mysql
+    #Variables de entorno
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=manager
+      - MYSQL_PASSWORD=secret
+  web:
+    image: wordpress:4.9.8
+    container_name: wordpress
+    #No se puede lanzar hasta que db se lance antes
+    depends_on:
+      - db
+    #Mapeado a un directorio del equipo
+    volumes:
+      - ./wordpress:/var/www/html
+    environment:
+      - WORDPRESS_DB_USER=manager
+      - WORDPRESS_DB_PASSWORD=secret
+      - WORDPRESS_DB_HOST=db
+    #Puertos
+    ports:
+      - 8080:80
+#Volumen
+volumes:
+  data:

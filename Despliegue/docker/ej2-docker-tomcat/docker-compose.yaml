@@ -1,0 +1,12 @@
+version:  '3'
+services:
+  #Nombre servicio (funciona como un Alias)
+  tomcat:
+    image: tomcat:9.0
+    container_name: tomcat-compose    
+    #Mapeado a un directorio del equipo
+    volumes:
+      - ./shared:/usr/local/tomcat/webapps
+    #Puertos
+    ports:
+      - 8888:8080

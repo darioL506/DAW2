@@ -1,0 +1,42 @@
+version:  '3'
+services:
+  apache-php:
+    image: php:7.3-apache
+    container_name: php-mamas
+    volumes:
+      - ./shared/Mamas2.0:/var/www/html
+    networks: 
+      - mamas-network
+    ports:
+      - 8082:80
+  
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb-DB
+    volumes:
+      - ./shared/sql:/var/lib/mysql
+    environment:
+      TZ: 'Europe/Rome'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      MYSQL_ROOT_PASSWORD: 'Chubaca2020'
+      MYSQL_USER: 'mamas'
+      MYSQL_PASSWORD: 'Chubaca2020'
+      MYSQL_DATABASE: 'Mamas'
+    networks: 
+      - mamas-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - 'mariadb:db'
+    depends_on: 
+      - mariadb
+    ports:
+      - 8081:80
+    networks:
+      - mamas-network
+  
+networks:
+  mamas-network:
+    driver: bridge
