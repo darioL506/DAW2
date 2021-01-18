@@ -16,9 +16,14 @@ import {
   NgGapiClientConfig,
   NG_GAPI_CONFIG
 } from "ng-gapi";
+import { MenuComponent } from './menu/menu.component';
+import { EnviarComponent } from './views/enviar/enviar.component';
+import { HomeComponent } from './views/home/home.component';
+import { VisualizarCorreoComponent } from './views/visualizar-correo/visualizar-correo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 let gapiClientConfig: NgGapiClientConfig = {
-  client_id: "134377892924-a3vvhui20kl0bkefcknh7pe9ab7i5gr7.apps.googleusercontent.com",
+  client_id: "219029622473-es17v3a8vtg2tmv27jf03egh1r6s0hv2.apps.googleusercontent.com",
   discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"],
   ux_mode: "popup",
   redirect_uri: "http://localhost:4200/loged",
@@ -39,7 +44,11 @@ let gapiClientConfig: NgGapiClientConfig = {
     NuevoCorreoComponent,
     AvisosComponent,
     CorreosRecibidosComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    EnviarComponent,
+    HomeComponent,
+    VisualizarCorreoComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +60,7 @@ let gapiClientConfig: NgGapiClientConfig = {
       provide: NG_GAPI_CONFIG,
       useValue: gapiClientConfig
     }),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
