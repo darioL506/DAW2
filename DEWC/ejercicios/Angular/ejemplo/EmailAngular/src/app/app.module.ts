@@ -11,6 +11,12 @@ import { AvisosComponent } from './components/avisos/avisos.component';
 import { CorreosRecibidosComponent } from './views/correos-recibidos/correos-recibidos.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+//Material libs
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+//Google api
 import {
   GoogleApiModule,
   NgGapiClientConfig,
@@ -52,6 +58,10 @@ let gapiClientConfig: NgGapiClientConfig = {
   ],
   imports: [
     BrowserModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatToolbarModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
