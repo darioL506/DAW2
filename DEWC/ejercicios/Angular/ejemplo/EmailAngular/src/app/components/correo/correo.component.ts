@@ -11,17 +11,17 @@ export class CorreoComponent implements OnInit {
 
   correo: any;
 
-  constructor(private route: ActivatedRoute, private CorreoService: CorreoService) {
-    if (CorreoService.correo) {
-      this.correo = CorreoService.correo;
-    } else {
+  constructor(private route: ActivatedRoute, private correoService: CorreoService) {
+    if (correoService.correo)
+      this.correo = correoService.correo;
+    else {
       this.correo = {
         titulo: "",
         cuerpo: "",
         emisor: ""
       }
     }
-   }
+  }
 
   ngOnInit(): void {
     //Obtenemos el parámetro enviado en la ruta (ver lista-correos.component.ts)
