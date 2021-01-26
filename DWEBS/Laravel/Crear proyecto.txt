@@ -17,6 +17,9 @@ Migración
 php artisan migrate
 php artisan db:seed
 
+Middleware
+php artisan make:middleware ejemplo
+
 Git
 Recuerda que para que funcionen, una vez realizado el pull deberás realizar un
 composer update (dentro de la carpeta del proyecto).
