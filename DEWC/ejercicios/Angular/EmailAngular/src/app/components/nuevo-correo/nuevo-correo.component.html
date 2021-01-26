@@ -1,0 +1,33 @@
+<form [formGroup]="nuevoCorreo" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Titulo</label>
+        <input type="text" formControlName="titulo">
+        <div *ngIf="submited && formulario.titulo.errors">
+            <div>El titulo</div>
+            <div *ngIf="formulario.titulo.errors.required">no puede estar vacío</div>
+            <div *ngIf="formulario.titulo.errors.minlength">debe tener más de 3 carácteres</div>
+        </div>
+    </div>
+    <div>
+        <label>Cuerpo</label>
+        <textarea formControlName="cuerpo"></textarea>
+        <div *ngIf="submited && formulario.cuerpo.errors">
+            <div>El cuerpo: </div>
+            <div *ngIf="formulario.cuerpo.errors.required">no puede estar vacío</div>
+            <div *ngIf="formulario.cuerpo.errors.minlength">debe tener más de 10 carácteres</div>
+        </div>
+    </div>
+    <div>
+        <label>Destinatario</label>
+        <input type="email" formControlName="destinatario">
+        <div *ngIf="submited && formulario.destinatario.errors">
+            <div>El destinatario </div>
+            <div *ngIf="formulario.destinatario.errors.required">no puede estar vacío</div>
+            <div *ngIf="formulario.destinatario.errors.email">debe ser un email válido</div>
+        </div>
+    </div>
+    <div>
+        <button>Enviar</button>
+        <button type="reset" (click)="cancel()">Cancelar</button>
+    </div>
+</form>
