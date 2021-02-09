@@ -1,5 +1,5 @@
 {
-  "name": "tabla-mult",
+  "name": "calculadora",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -9,7 +9,6 @@
     "express-session": "^1.17.1",
     "jade": "^1.11.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
