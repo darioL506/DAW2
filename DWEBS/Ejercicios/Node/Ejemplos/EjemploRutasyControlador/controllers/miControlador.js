@@ -11,12 +11,12 @@ function indice(req, res){
 
 function validar(req, res) {
     console.log(req.body);
-    res.render("mostrar", { dni: req.body.nombre });
+    res.render("mostrar", { nombre: req.body.nombre });
 };
 
 function conParametro(req, res) {
     console.log(req.params);
-    res.render("mostrar", { dni: req.params.nombre });
+    res.render("mostrar", { nombre: req.params.nombre });
 };
  
 // Exportamos las funciones en un objeto json para poder usarlas en otros fuera de este fichero

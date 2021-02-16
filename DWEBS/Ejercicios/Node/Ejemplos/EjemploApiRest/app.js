@@ -16,7 +16,7 @@ var config = {
     host: 'localhost',
     user: 'fernando',
     password: 'Chubaca2018',
-    database: 'authBasico',
+    database: 'ejemplo',
     port: 3306
 };
 /*
@@ -37,65 +37,64 @@ app.use(body_parser.json());
 // Display all users
 app.get('/personas', (request, response) => {
     pool.query('SELECT * FROM personas', (error, result) => {
-        if (error) throw error;
-        response.status(200).send(result);
+        if (error) response.status(400).send("Se ha producido un error en la consulta.");
+        else response.status(200).send(result);
     });
 });
 
 
 // Display a single user by ID
-app.get('/personas/:id', (request, response) => {
-    const id = request.params.id;
+app.get('/personas/:dni', (request, response) => {
+    const dni = request.params.dni;
 
-    pool.query('SELECT * FROM personas WHERE id = ?', id, (error, result) => {
-        if (error) throw error;
-        response.status(200).send(result);
+    pool.query('SELECT * FROM personas WHERE DNI = ?', dni, (error, result) => {
+        if (error) response.status(400).send("Se ha producido un error en la consulta.");
+        else response.status(200).send(result);
     });
 });
 
+
 // Add a new user
 app.post('/personas', (req, res) => {
-    var nombre = req.body.nombre;
-    var ciudad = req.body.ciudad;
+    var nombre = req.body.dni;
+    var ciudad = req.body.nombre;
+    var tfno = req.body.tfno;
     console.log(req.body);
-    console.log(nombre);
-    console.log(ciudad);
-    pool.query('INSERT INTO personas (nombre, ciudad) VALUES (?,?)', [req.body.nombre, req.body.ciudad], (error, result) => {
-        if (error) throw error;
-        res.status(201).send('Registro añadido ID:' + result.insertId);
+    pool.query('INSERT INTO personas (DNI, Nombre, Clave, Tfno) VALUES (?,?,?,?)', [nombre, ciudad, 1234, tfno], (error, result) => {
+        if (error) res.status(400).send({status:400, message:'Error al insertar'});
+        else res.status(201).send({status:201,message:'Registro añadido ID:' + result.insertId}); //En este caso esto devuelve 0 porque la clave no es Id.
     });
 });
 
 
 // Update an existing user
-app.put('/personas/:id', (req, res) => {
-    const id = req.params.id;
-    var nombre = req.body.nombre;
-    var ciudad = req.body.ciudad;
+app.put('/personas/:dni', (req, res) => {
+    const dni = req.params.dni;
     console.log(req.body);
-    console.log(nombre);
-    console.log(ciudad);
-    pool.query('UPDATE personas SET ? WHERE id = ?', [req.body, id], (error, result) => {
-        if (error) throw error;
-        res.status(201).send('Se han cambiado: ' + result.changedRows + " filas");
+    pool.query('UPDATE personas SET ? WHERE DNI = ?', [req.body, dni], (error, result) => {
+        if (error) res.status(400).send({status:400, message:'Error al actualizar'});
+        else res.status(201).send({status:201, message:'Se han cambiado: ' + result.changedRows + " filas"});
     });
 });
 
+
 // Delete a user
-app.delete('/personas/:id', (req, res) => {
-    const id = req.params.id;
-    console.log("Borrando el id: " + id);
-    pool.query('DELETE FROM personas WHERE id = ?', id, (error, result) => {
+app.delete('/personas/:dni', (req, res) => {
+    const dni = req.params.dni;
+    console.log("Borrando el DNI: " + dni);
+    pool.query('DELETE FROM personas WHERE DNI = ?', dni, (error, result) => {
         if (error) throw error;
         else {
             if (result.affectedRows == 0) {
-                res.status(404).send('Se han borrado: ' + result.affectedRows + " filas");
+                res.status(404).send({status:404, message:'Se han borrado: ' + result.affectedRows + " filas"});
             } else {
-                res.status(201).send('Se han borrado: ' + result.affectedRows + " filas");
+                res.status(201).send({status:201, message:'Se han borrado: ' + result.affectedRows + " filas"});
             }
         }
     });
 });
 
+
 //Lanzamos el servidor.
+console.log("Servidor arrancado: http://localhost:8090");
 app.listen(8090);
