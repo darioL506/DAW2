@@ -44,15 +44,14 @@ exports.getUsers = (req, res) => {
         if (error) {
             throw error;
         } else {
-            var resultado = result;
-            console.log(resultado);            
+            var resultado = result;                   
             return res.status(200).send({ status: 200, data: resultado });
         }
     });
 };
 
-exports.deleteUser = (dni) => {
-    pool.query('DELETE FROM usuario WHERE DNI = ?', [dni], function(error, result) {
+exports.deleteUser = (req, res) => {
+    pool.query('DELETE FROM usuario WHERE DNI = ?', [req.body.dni], function(error, result) {
         if (error) {
             return res.status(404).send({ status: 404, message: "User Not found."+ error });
         } else {                
@@ -61,8 +60,8 @@ exports.deleteUser = (dni) => {
     });
 }
 
-exports.updateUser = (dni,nombre) => {
-    pool.query('Update usuario SET nombre = ? WHERE DNI = ?', [nombre,dni], function(error, result) {
+exports.updateUser = (req, res) => {    
+    pool.query('Update usuario SET nombre = ? WHERE DNI = ?', [req.body.name,req.body.dni], function(error, result) {
         if (error) {
             return res.status(404).send({ status: 404, message: "User Not found."+ error });
         } else {                

@@ -16,7 +16,10 @@ and open the template in the editor.
             foreach ($usuarios as $usuario) {
         ?>
         <form action="controller.php" method="POST">
-            <input value="<?=$usuario['nombre']?>">
+            Nombre:<input name="name" value="<?=$usuario['nombre']?>">
+            <input type="hidden" name="dni" value="<?=$usuario['dni']?>">
+            <input type="submit" name="editar" value="Editar">
+            <input type="submit" name="borrar" value="Borrar">
         </form>
         <?php
             }

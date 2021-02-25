@@ -13,28 +13,17 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-// simple route
 app.get("/", (req, res) => {
     res.json({ message: "Bienvenido." });
 });
 
-// routes
 require('./routes/bbdd.routes')(app);
 
-// set port, listen for requests
-
+//Puerto de acceso
 app.listen(port, () => {
     console.log("Example app listening at http://localhost:" + port)
 })
-
-// //Lanzamos el servidor.
-// console.log("Servidor arrancado: http://localhost:8090");
-// app.listen(8090);

@@ -1,4 +1,5 @@
 const NotaController = require("../controllers/user.controller");
+const { authJwt } = require("../middleware");
 
 module.exports = function(app) {
 
@@ -12,10 +13,10 @@ module.exports = function(app) {
 
     app.post("/login", NotaController.login);
 
-    app.get("/getUsers",NotaController.getUsers);
+    app.get("/getUsers",[authJwt.verifyToken],NotaController.getUsers);
 
-    app.post("/crudDelete/{dni}",NotaController.deleteUser);
+    app.post("/crudDelete",[authJwt.verifyToken],NotaController.deleteUser);
     
-    app.post("/crudUpdate/{dni}",NotaController.updateUser);
+    app.post("/crudUpdate",[authJwt.verifyToken],NotaController.updateUser);
 
 };
