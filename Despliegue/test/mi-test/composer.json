@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "pcov/clobber": "^2.0.0"
+    }
+}
