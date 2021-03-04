@@ -26,4 +26,8 @@ export default {
 }
 </script>
 
-<style langs='css'></style>
+<style langs='css' scoped>
+  .search {
+    margin: 1rem;
+  }
+</style>
