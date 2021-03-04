@@ -1,21 +1,21 @@
-<template lang="html">
-  <div class="developer">
-    <img class="developer_avatar" />
-    <div class="developer_info">
+<template lang='html'>
+  <div class='developer'>
+    <img class='developer_avatar' />
+    <div class='developer_info'>
       <h2>
-        <span class="developer_name">{{ name }}</span>
-        <span class="developer_login">{{ login }}</span>
+        <span class='developer_name'>{{ name }}</span>
+        <span class='developer_login'>{{ login }}</span>
       </h2>
-      <div class="developer_metadata">{{ metadata }}</div>
+      <div class='developer_metadata'>{{ metadata }}</div>
     </div>
-    <div class="developer_stats">
-      <div class="developer_stat">
-        <div class="developer_icon"></div>
-        <div class="developer_total">{{ repos }}</div>
+    <div class='developer_stats'>
+      <div class='developer_stat'>
+        <div class='developer_icon'></div>
+        <div class='developer_total'>{{ repos }}</div>
       </div>
-      <div class="developer_stat">
-        <div class="developer_icon"></div>
-        <div class="developer_total">{{ gist }}</div>
+      <div class='developer_stat'>
+        <div class='developer_icon'></div>
+        <div class='developer_total'>{{ gist }}</div>
       </div>
     </div>
   </div>
@@ -23,13 +23,13 @@
 
 <script>
 export default {
-  name: "CoDeveloper",
+  name: 'CoDeveloper',
   props: {
     avatar: {
       type: String,
       required: true,
-      validator(value) {
-        return value.startsWith("http");
+      validator (value) {
+        return value.startsWith('http')
       }
     },
     name: {
@@ -56,41 +56,26 @@ export default {
     }
   },
   computed: {
-    metadata() {
-      let meta = "";
+    metadata () {
+      let meta = ''
       if (this.email) {
-        meta = `${meta} ${this.email}`;
+        meta = `${meta} ${this.email}`
       }
       if (this.loaction) {
-        meta = `${meta} ${this.location}`;
+        meta = `${meta} ${this.location}`
       }
       if (this.company) {
-        meta = `${meta} ${this.company}`;
+        meta = `${meta} ${this.company}`
       }
-      return meta;
-    },
-    othermeta: {
-      set() {},
-      get() {
-        if (this.email) {
-          meta = `${meta} ${this.email}`;
-        }
-        if (this.loaction) {
-          meta = `${meta} ${this.location}`;
-        }
-        if (this.company) {
-          meta = `${meta} ${this.company}`;
-        }
-        return meta;
-      }
+      return meta
     }
   },
   watch: {
-    metadata(newValue) {
-      console.log("Metadata:", newValue);
+    metadata (newValue) {
+      console.log('Metadata:', newValue)
     }
   }
-};
+}
 </script>
 
-<style lang="css"></style>
+<style lang='css'></style>

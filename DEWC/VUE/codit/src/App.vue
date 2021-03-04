@@ -1,34 +1,20 @@
-<template lang="html">
-  <div class="codit">
-    <div class="container">
-      <nav class="menu">
-        <co-search v-on:search="onSearch"> </co-search>
-        <co-bookmarks></co-bookmarks>
-      </nav>
-      <main class="content">
-        <header class="content_header">
-          <co-logo></co-logo>
-        </header>
-        <co-developers></co-developers>
-      </main>
-    </div>
-  </div>
+<template lang='pug' src='./App.pug'>
 </template>
 
 <script>
-import CoLogo from "@/components/CoLogo";
-import CoSearch from "@/components/CoSearch";
-import CoBookmarks from "@/components/CoBookmarks";
-import CoDevelopers from "@/components/CoDevelopers";
+import CoLogo from '@/components/CoLogo'
+import CoSearch from '@/components/CoSearch'
+import CoBookmarks from '@/components/CoBookmarks'
+// import CoDevelopers from '@/components/CoDevelopers'
 export default {
-  name: "CoApp",
+  name: 'CoApp',
   components: {
     CoLogo,
     CoSearch,
     CoBookmarks,
-    CoDevelopers
+    CoDevelopers: () => import('@/components/CoDevelopers')
   }
-};
+}
 </script>
 
-<style lang="css"></style>
+<style lang='css'></style>

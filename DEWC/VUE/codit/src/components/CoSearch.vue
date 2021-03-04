@@ -1,27 +1,29 @@
-<template lang="html">
+<template lang='html'>
   <input
-    name="search"
-    type="text"
-    placeholder="Write an user"
-    class="search"
-    v-model="criteria"
+    name='search'
+    type='text'
+    placeholder='Write an user'
+    class='search'
+    v-model='criteria'
   />
 </template>
 
 <script>
+import bus from '@/busData.js'
 export default {
-  name: "CoSearch",
-  data() {
+  name: 'CoSearch',
+  data () {
     return {
-      criteria: ""
-    };
+      criteria: ''
+    }
   },
   watch: {
-    criteria() {
-      this.$emit("search", this.criteria);
+    criteria () {
+      // this.$emit('search', this.criteria)
+      bus.$emit('search', this.criteria)
     }
   }
-};
+}
 </script>
 
-<style langs="css"></style>
+<style langs='css'></style>

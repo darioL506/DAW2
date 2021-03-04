@@ -1,9 +1,9 @@
-<template lang="html"> </template>
+<template lang='html'> </template>
 
 <script>
 export default {
-  name: "CoBookmarks"
-};
+  name: 'CoBookmarks'
+}
 </script>
 
-<style lang="css"></style>
+<style lang='css'></style>
