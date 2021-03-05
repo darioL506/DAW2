@@ -13,6 +13,11 @@ export default {
     CoSearch,
     CoBookmarks,
     CoDevelopers: () => import('@/components/CoDevelopers')
+  },
+  methods: {
+    onSearch (criteria) {
+      this.$router.push({ name: 'profile', params: { userId: criteria } })
+    }
   }
 }
 </script>

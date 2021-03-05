@@ -21,7 +21,7 @@ export default {
   methods: {
     onSearch () {
       this.$emit('search', this.criteria)
-      // bus.$emit('search', this.criteria)
+      this.criteria = ''
     }
   },
   directives: {
