@@ -1,9 +1,10 @@
 .codit
     .container
         nav.menu
-            co-search
+            co-search(v-on:search='onSearch')
             co-bookmarks
         main.content
             header.content__header
                 co-logo
+            //transition(name='fade' v-if='show')
             co-developers

@@ -1,5 +1,5 @@
 <template lang='html'>
-  <h1 class='logo'>{{ appName }}</h1>
+  <h1 class='logo'>{{ appName | upper }}</h1>
 </template>
 
 <script>
@@ -8,6 +8,14 @@ export default {
   data () {
     return {
       appName: 'Codit'
+    }
+  },
+  filters: {
+    upper (value) {
+      if (!value) {
+        return ''
+      }
+      return value.toUpperCase()
     }
   }
 }

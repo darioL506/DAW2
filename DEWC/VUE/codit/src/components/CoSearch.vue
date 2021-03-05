@@ -4,12 +4,13 @@
     type='text'
     placeholder='Write an user'
     class='search'
-    v-model='criteria'
+    v-focus
+    v-on:keyup.enter='onSearch'
   />
 </template>
 
 <script>
-import bus from '@/busData.js'
+// import bus from '@/busData.js'
 export default {
   name: 'CoSearch',
   data () {
@@ -17,10 +18,17 @@ export default {
       criteria: ''
     }
   },
-  watch: {
-    criteria () {
-      // this.$emit('search', this.criteria)
-      bus.$emit('search', this.criteria)
+  methods: {
+    onSearch () {
+      this.$emit('search', this.criteria)
+      // bus.$emit('search', this.criteria)
+    }
+  },
+  directives: {
+    focus: {
+      inserted: function (el) {
+        el.focus()
+      }
     }
   }
 }
