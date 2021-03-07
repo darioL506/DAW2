@@ -1,0 +1,10 @@
+Para optimizar el manual, he decidio convertir las imágenes a jpeg y minimizar el html
+Amabas páginas están subidas para poder acceder desde fuera
+
+Pagina sin optimizar:
+https://manualusuariosinoptimizar.netlify.app
+
+Página optimizada:
+https://manual-usuario-optimizado.netlify.app
+
+
