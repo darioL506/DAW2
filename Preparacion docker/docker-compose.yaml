@@ -1,0 +1,56 @@
+version: "3.8"
+services: 
+  reverseproxy:
+    image: jwilder/nginx-proxy
+    container_name: reverseproxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks: 
+      - net-examen
+    restart: always
+  
+  nginx:
+    image: nginx
+    container_name: nginx
+    environment:
+      - VIRTUAL_HOST=nginxprueba.com
+    networks: 
+      - net-examen
+  
+  apache:
+    image: httpd:alpine
+    container_name: apache
+    environment:
+      - VIRTUAL_HOST=apacheprueba.com
+    networks: 
+      - net-examen
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - VIRTUAL_HOST=phpmyadmin.com
+    networks:
+      - net-examen
+
+  db:
+    image: mariadb:10.5.8
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: db_prueba
+      MYSQL_ROOT_PASSWORD: Chubaca2020
+      MYSQL_PASSWORD: Chubaca2020
+      MYSQL_USER: admin
+    networks:
+      - net-examen
+
+
+networks: 
+  net-examen:
+    
