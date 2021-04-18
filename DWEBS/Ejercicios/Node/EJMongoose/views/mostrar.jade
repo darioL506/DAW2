@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Datos de BBDD
+    body
+        h1 Listado de datos
+        - if (estado)
+            - each dato in datos
+                form(action="crud", method="post")
+                    input(type="text",name="dni", value=dato.dni, readonly)                    
+                    input(type="text",name="nombre", value=dato.nombre)                    
+                    input(type="submit", name="accion" value="Borrar")                    
+                    input(type="submit", name="accion" value="Editar")                    
+                    br
+        - else
+            p= "No se ha encontrado ningún registro"
+        a(href="/index") Volver
